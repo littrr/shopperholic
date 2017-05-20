@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['as' => 'home'], function() {
+    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/cart', 'CartController@index')->name('cart');
