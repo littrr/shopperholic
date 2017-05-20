@@ -4,8 +4,9 @@ namespace Shopperholic\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class ProductBrand extends Model
 {
+    public $table = 'product_brands';
     /**
      * @var array
      */

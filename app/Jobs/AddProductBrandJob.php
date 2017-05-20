@@ -4,34 +4,35 @@ namespace App\Jobs;
 
 use Illuminate\Http\Request;
 use Shopperholic\Entities\Brand;
+use Shopperholic\Entities\ProductBrand;
 
-class AddBrandJob
+class AddProductBrandJob
 {
     /**
      * @var Request
      */
     private $request;
     /**
-     * @var Brand
+     * @var ProductBrand
      */
     private $brand;
 
     /**
-     * Create a new job instance.
+     * AddProductBrandJob constructor.
      *
      * @param Request $request
-     * @param Brand $brand
+     * @param ProductBrand|null $brand
      */
-    public function __construct(Request $request, Brand $brand = null)
+    public function __construct(Request $request, ProductBrand $brand = null)
     {
         $this->request = $request;
-        $this->brand = $brand ?? new Brand(['user_id' => $this->request->user()->id]);
+        $this->brand = $brand ?? new ProductBrand(['user_id' => $this->request->user()->id]);
     }
 
     /**
      * Execute the job
      *
-     * @return Brand
+     * @return ProductBrand
      */
     public function handle()
     {
@@ -39,11 +40,11 @@ class AddBrandJob
     }
 
     /**
-     * Create or update a brand
+     * Create or update a product's brand
      *
-     * @return Brand
+     * @return ProductBrand
      */
-    private function createOrUpdateBrand(): Brand
+    private function createOrUpdateBrand(): ProductBrand
     {
         foreach($this->brand->getFillable() as $fillable) {
             if ($this->request->has($fillable)) {

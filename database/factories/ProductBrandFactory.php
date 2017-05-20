@@ -5,10 +5,10 @@
  * Date: 5/18/17
  * Time: 11:52 PM
  */
-use Shopperholic\Entities\Brand;
+use Shopperholic\Entities\ProductBrand;
 use Shopperholic\Entities\User;
 
-$factory->define(Brand::class, function(Faker\Generator $faker) {
+$factory->define(ProductBrand::class, function(Faker\Generator $faker) {
     $name = $faker->name;
 
     return [

@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
-use App\Jobs\AddBrandJob;
-use Shopperholic\Entities\Brand;
+use App\Jobs\AddProductBrandJob;
+use Shopperholic\Entities\ProductBrand;
 use Shopperholic\Entities\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class AddBrandJobTest extends TestCase
+class AddProductBrandJobTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -16,13 +16,13 @@ class AddBrandJobTest extends TestCase
     {
         $this->authenticateUser();
 
-        $brand = factory(Brand::class)->make()->toArray();
+        $brand = factory(ProductBrand::class)->make()->toArray();
 
         $this->request->merge($brand);
 
-        $createdBrand = dispatch(new AddBrandJob($this->request));
+        $createdBrand = dispatch(new AddProductBrandJob($this->request));
 
-        $this->assertInstanceOf(Brand::class, $createdBrand);
+        $this->assertInstanceOf(ProductBrand::class, $createdBrand);
         $this->assertNotNull($createdBrand->user);
         $this->assertInstanceOf(User::class, $createdBrand->user);
     }
@@ -31,13 +31,13 @@ class AddBrandJobTest extends TestCase
     {
         $this->authenticateUser();
 
-        $brand = factory(Brand::class)->create();
+        $brand = factory(ProductBrand::class)->create();
 
         $this->request->merge(['name' => 'Gucci']);
 
-        $updatedBrand = dispatch(new AddBrandJob($this->request, $brand));
+        $updatedBrand = dispatch(new AddProductBrandJob($this->request, $brand));
 
-        $this->assertInstanceOf(Brand::class, $updatedBrand);
+        $this->assertInstanceOf(ProductBrand::class, $updatedBrand);
         $this->assertEquals('Gucci', $updatedBrand->name);
     }
 }
