@@ -16,7 +16,7 @@ class AddBrandJobTest extends TestCase
     {
         $this->authenticateUser();
 
-        $brand = factory(Brand::class)->make();
+        $brand = factory(Brand::class)->make()->toArray();
 
         $this->request->merge($brand);
 
