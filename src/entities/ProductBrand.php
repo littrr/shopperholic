@@ -10,7 +10,7 @@ class ProductBrand extends Model
     /**
      * @var array
      */
-    public $fillable = ['name', 'slug', 'user_id'];
+    public $fillable = ['name', 'slug', 'shop_id', 'user_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
