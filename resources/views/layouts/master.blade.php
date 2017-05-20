@@ -37,10 +37,10 @@
     <body>
 
         {{--Login & Register Modal--}}
-        @include('includes._login_and_register_modal')
+        @include('auth.includes._login_and_register_modal')
 
         {{--Navbar--}}
-        @include('includes._navbar')
+        @include('auth.includes._navbar')
 
         @yield('content')
 
@@ -58,13 +58,6 @@
                                             <strong>
                                                 <i class="fa fa-phone"></i>+233-544-909356
                                             </strong>
-                                        </a>
-                                    </h4>
-                                    <h4>
-                                        <a class="inline" href="http://templatecycle.com/cdn-cgi/l/email-protection#b2dad7dec2f2cbddc7c0c5d7d09cd1dddf">
-                                            <i class="fa fa-envelope-o"> </i>
-                                            <span class="__cf_email__" data-cfemail="523a373e22122b3d27202537307c313d3f">[email&#160;protected]</span>
-                                            <script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>
                                         </a>
                                     </h4>
                                 </li>
