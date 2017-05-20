@@ -232,7 +232,7 @@
             </ul>
             <div class="nav navbar-nav text-right hidden-xs pull-right">
                 <div class="dropdown  cartMenu">
-                    <a href="{{ url('/cart') }}" class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle">
                         <i class="fa fa-shopping-cart"> </i>
                         <span class="cartRespons">&nbsp;(10)</span>
                     </a>
