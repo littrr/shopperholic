@@ -13,7 +13,7 @@ pipelines:
           - php -r "file_exists('.env') || copy('.env.example', '.env');"
           - composer install
           - php artisan key:generate
-          - vendor/bin/phpunit
+          - vendor/bin/phpunit --debug --no-coverage
   branches:
     develop:
       - step:
@@ -23,4 +23,4 @@ pipelines:
           - php -r "file_exists('.env') || copy('.env.example', '.env');"
           - composer install
           - php artisan key:generate
-          - vendor/bin/phpunit
+          - vendor/bin/phpunit --debug --no-coverage
