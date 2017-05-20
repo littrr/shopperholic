@@ -20,7 +20,7 @@ class CreateProductCategoriesTable extends Migration
             $table->string('description')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable()->index();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('shop_id')->nullable()->index();
+            $table->unsignedBigInteger('merchant_id')->nullable()->index();
             $table->timestamps();
 
             $table->foreign('parent_id', 'fk_categories_parent_id')->references('id')->on('product_categories')
@@ -29,7 +29,7 @@ class CreateProductCategoriesTable extends Migration
             $table->foreign('user_id', 'fk_categories_user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('set null');
 
-            $table->foreign('shop_id', 'fk_categories_shop_id')->references('id')->on('shops')
+            $table->foreign('merchant_id', 'fk_categories_merchant_id')->references('id')->on('merchants')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

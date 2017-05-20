@@ -16,7 +16,7 @@ class ProductCategory extends Model
     /**
      * @var array
      */
-    public $fillable = ['name', 'slug', 'description', 'parent_id', 'user_id'];
+    public $fillable = ['name', 'slug', 'description', 'parent_id', 'merchant_id', 'user_id'];
 
     /**
      * Category's parent category
