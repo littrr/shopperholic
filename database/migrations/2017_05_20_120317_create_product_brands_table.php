@@ -18,13 +18,13 @@ class CreateProductBrandsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('user_id')->nullable();
-            $table->unsignedBigInteger('shop_id')->nullable()->index();
+            $table->unsignedBigInteger('merchant_id')->nullable()->index();
             $table->timestamps();
 
             $table->foreign('user_id', 'fk_brands_user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->foreign('shop_id', 'fk_brands_user_id')->references('id')->on('shops')
+            $table->foreign('merchant_id', 'fk_brands_merchant_id')->references('id')->on('merchants')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
