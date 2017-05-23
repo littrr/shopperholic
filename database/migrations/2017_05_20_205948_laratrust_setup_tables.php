@@ -17,6 +17,7 @@ class LaratrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('userable_id')->nullable();
             $table->string('userable_type')->nullable();
             $table->timestamps();
@@ -40,6 +41,9 @@ class LaratrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table->string('group_name')->nullable();
+            $table->unsignedTinyInteger('is_app_owner_permission')->default(0);
+            $table->unsignedTinyInteger('is_merchant_permission')->default(0);
             $table->timestamps();
         });
 
