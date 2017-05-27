@@ -231,6 +231,27 @@
                     </ul>
                 </li>
             </ul>
+
+            @if($authUser)
+            <div class="nav navbar-nav text-right hidden-xs pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $authUser->name }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ url('/logout') }}" method="post" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            @else
             <div class="nav navbar-nav text-right hidden-xs pull-right">
                 <div class="cartMenu">
                     <a href="#" class="dropdown-toggle pull-right" data-toggle="modal" data-target="#ModalLogin">
@@ -238,6 +259,8 @@
                     </a>
                 </div>
             </div>
+            @endif
+
             <div class="nav navbar-nav text-right hidden-xs pull-right">
                 <div class="dropdown  cartMenu">
                     <a href="#" class="dropdown-toggle pull-right">
