@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                <h3 class="modal-title-site text-center"> Login to TSHOP </h3>
+                <h3 class="modal-title-site text-center"> Sign in to {{ config('app.name') }} </h3>
             </div>
             <div class="modal-body">
                 <div class="form-group login-username">
@@ -45,7 +45,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                <h3 class="modal-title-site text-center"> REGISTER </h3>
+                <h3 class="modal-title-site text-center"> SIGNUP </h3>
             </div>
             <div class="modal-body">
                 <div class="control-group">

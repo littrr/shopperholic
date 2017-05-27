@@ -23,18 +23,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
-                    <div class="pull-right">
-                        <ul class="userMenu">
-                            <li>
-                                <a href="master.blade.php#" data-toggle="modal" data-target="#ModalLogin">
-                                    <span class="hidden-xs">Sign In</span>
-                                    <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -48,8 +36,8 @@
                 <i class="fa fa-shopping-cart colorWhite"> </i>
                 <span class="cartRespons colorWhite"> Cart (10) </span>
             </button>
-            <a class="navbar-brand " href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}">
+            <a class="navbar-brand " href="{{ url('/') }}" style="padding-top: 8%">
+                {{ strtoupper(config('app.name')) }}
             </a>
         </div>
         <div class="navbar-cart  collapse">
@@ -159,11 +147,6 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="#">
-                        Products
-                    </a>
-                </li>
                 <li class="dropdown megamenu-fullwidth">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="master.blade.php#">
                         Categories <b class="caret"> </b>
@@ -198,7 +181,7 @@
                 </li>
                 <li class="dropdown megamenu-80width ">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="master.blade.php#">
-                        SHOPS <b class="caret"> </b>
+                        Shops <b class="caret"> </b>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="megamenu-content">
@@ -231,10 +214,17 @@
                 </li>
             </ul>
             <div class="nav navbar-nav text-right hidden-xs pull-right">
+                <div class="cartMenu">
+                    <a href="#" class="dropdown-toggle pull-right" data-toggle="modal" data-target="#ModalLogin">
+                        <span class="cartResponse">Hello, Sign In</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav navbar-nav text-right hidden-xs pull-right">
                 <div class="dropdown  cartMenu">
-                    <a href="#" class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle pull-right">
                         <i class="fa fa-shopping-cart"> </i>
-                        <span class="cartRespons">&nbsp;(10)</span>
+                        <span class="cartResponse"></span>
                     </a>
                 </div>
             </div>
