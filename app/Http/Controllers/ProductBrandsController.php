@@ -33,13 +33,14 @@ class ProductBrandsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created brand in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+
         try {
             dispatch(new AddProductBrandJob($request));
         } catch (\Exception $e) {
@@ -51,11 +52,11 @@ class ProductBrandsController extends Controller
 
         flash()->success('Brand successfully added');
 
-        return view('admin.brands.index');
+        return redirect()->route('admin.brands.index');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified brand.
      *
      * @param ProductBrand $brand
      * @return \Illuminate\Http\Response
@@ -66,18 +67,18 @@ class ProductBrandsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified brand.
      *
      * @param ProductBrand $brand
      * @return \Illuminate\Http\Response
      */
     public function edit(ProductBrand $brand)
     {
-        return view('admin.brand.create', compact('brand'));
+        return view('admin.brands.create', compact('brand'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified brand in storage.
      *
      * @param  \Illuminate\Http\Request $request
      * @param ProductBrand $brand
@@ -96,6 +97,6 @@ class ProductBrandsController extends Controller
 
         flash()->success('Brand successfully updated');
 
-        return view('admin.brand.index');
+        return redirect()->route('admin.brands.index');
     }
 }

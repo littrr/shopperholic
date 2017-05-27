@@ -52,6 +52,8 @@ class AddProductBrandJob
             }
         }
 
+        $this->brand->slug = $this->request->get('name');
+
         $this->brand->save();
 
         return $this->brand;

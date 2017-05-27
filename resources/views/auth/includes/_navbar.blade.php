@@ -212,6 +212,7 @@
                         </li>
                     </ul>
                 </li>
+                @if($authUser)
                 <li class="dropdown megamenu-80width ">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="master.blade.php#">
                         More <b class="caret"> </b>
@@ -230,6 +231,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
             </ul>
 
             @if($authUser)

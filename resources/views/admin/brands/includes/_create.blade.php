@@ -1,4 +1,4 @@
-<form action="{{ $brand->exists ? route('admin.brands.update', compact($brand)) : route('admin.brands.store') }}" method="post">
+<form action="{{ $brand->exists ? route('admin.brands.update', ['brand' => $brand]) : route('admin.brands.store') }}" method="post">
     {{csrf_field()}}
     @if ($brand->exists)
         <input type="hidden" name="_method" value="put">
@@ -6,7 +6,7 @@
     <div class="col-xs-12 col-sm-6">
         <div class="form-group required">
             <label for="BrandName">Brand Name <sup>*</sup> </label>
-            <input required="" type="text" class="form-control" name="name" placeholder="Brand Name">
+            <input required="" type="text" value="{{ old('name', $brand->name) }}"class="form-control" name="name" placeholder="Brand Name">
         </div>
     </div>
     <div class="col-lg-12">
