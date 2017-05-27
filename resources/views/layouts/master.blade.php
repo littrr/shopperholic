@@ -13,6 +13,7 @@
         <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
         <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('css/skin-1.css') }}">
         <link href="{{ asset('plugins/swiper-master/css/swiper.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
@@ -154,33 +155,20 @@
         </footer>
 
         <script type="text/javascript" src="{{ asset('js/jquery/jquery-1.10.1.min.js') }}"></script>
-        <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('plugins/swiper-master/js/swiper.jquery.min.js') }}"></script>
-        <script>
-            var swiper = new Swiper('.swiper-container', {
-                pagination: '.swiper-pagination',
-                nextButton: '.nextControl',
-                prevButton: '.prevControl',
-                keyboardControl: true,
-                paginationClickable: true,
-                slidesPerView: 'auto',
-                autoResize: true,
-                resizeReInit: true,
-                spaceBetween: 0,
-                freeMode: true
-            });
-        </script>
-        <script src="{{ asset('js/jquery.cycle2.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('plugins/swiper-master/js/swiper.jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/plugins/plugins.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.cycle2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/jquery.parallax-1.1.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/helper-plugins/jquery.mousewheel.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/jquery.mCustomScrollbar.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/icheck-1.x/icheck.min.js') }}"></script>
-        <script src="{{ asset('js/grids.js') }}"></script>
-        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-        <script src="{{ asset('js/bootstrap.touchspin.js') }}"></script>
-        <script src="{{ asset('js/home.js') }}"></script>
-        <script src="{{ asset('js/script.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/grids.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/select2.full.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.touchspin.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/home.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
     </body>
 </html>
