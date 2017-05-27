@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['*', 'layouts.dashboard'], AuthUserComposer::class);
+        view()->composer(['*'], AuthUserComposer::class);
     }
 
     /**
