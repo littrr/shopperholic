@@ -16,7 +16,17 @@ class ProductCategory extends Model
     /**
      * @var array
      */
-    public $fillable = ['name', 'slug', 'description', 'parent_id', 'merchant_id', 'user_id'];
+    public $fillable = ['name', 'slug', 'description', 'parent_id', 'user_id'];
+
+    /**
+     * Set slug attribute
+     *
+     * @param $name
+     */
+    public function setSlugAttribute($name)
+    {
+        $this->attributes['slug'] = str_slug($name);
+    }
 
     /**
      * Category's parent category

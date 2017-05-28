@@ -20,7 +20,6 @@ class CreateProductCategoriesTable extends Migration
             $table->string('description')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable()->index();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('merchant_id')->nullable()->index();
             $table->timestamps();
         });
     }
