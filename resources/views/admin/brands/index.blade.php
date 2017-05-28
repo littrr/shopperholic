@@ -1,15 +1,8 @@
 @extends('layouts.master')
 @section('content')
     <div class="container main-container headerOffset">
-        <div class="row">
-            <div class="breadcrumbDiv col-lg-9">
-                <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="account.html">My Account</a></li>
-                    <li class="active"> My information</li>
-                </ul>
-            </div>
-        </div>
+        {!! Breadcrumbs::render('brands') !!}
+        @include('flash::message')
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-7">
                 <h1 class="section-title-inner">List of Brands</h1>

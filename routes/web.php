@@ -17,7 +17,7 @@ Route::group(['as' => 'home'], function() {
 });
 
 // Routes for administrator
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function() {
 
     // Routes for brands
     Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {
