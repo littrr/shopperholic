@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductBrandRequest;
 use Illuminate\Http\Request;
 use Shopperholic\Entities\ProductBrand;
 use App\Jobs\AddProductBrandJob;
@@ -35,12 +36,11 @@ class ProductBrandsController extends Controller
     /**
      * Store a newly created brand in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductBrandRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductBrandRequest $request)
     {
-
         try {
             dispatch(new AddProductBrandJob($request));
         } catch (\Exception $e) {
@@ -80,11 +80,11 @@ class ProductBrandsController extends Controller
     /**
      * Update the specified brand in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ProductBrandRequest $request
      * @param ProductBrand $brand
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, ProductBrand $brand)
+    public function update(ProductBrandRequest $request, ProductBrand $brand)
     {
         try {
             dispatch(new AddProductBrandJob($request, $brand));
