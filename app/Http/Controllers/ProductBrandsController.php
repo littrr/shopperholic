@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductBrandRequest;
 use Shopperholic\Entities\ProductBrand;
 use App\Jobs\AddProductBrandJob;
 
@@ -33,12 +33,12 @@ class ProductBrandsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created brand in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductBrandRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductBrandRequest $request)
     {
         try {
             dispatch(new AddProductBrandJob($request));
@@ -51,11 +51,11 @@ class ProductBrandsController extends Controller
 
         flash()->success('Brand successfully added');
 
-        return view('admin.brands.index');
+        return redirect()->route('admin.brands.index');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified brand.
      *
      * @param ProductBrand $brand
      * @return \Illuminate\Http\Response
@@ -66,24 +66,24 @@ class ProductBrandsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified brand.
      *
      * @param ProductBrand $brand
      * @return \Illuminate\Http\Response
      */
     public function edit(ProductBrand $brand)
     {
-        return view('admin.brand.create', compact('brand'));
+        return view('admin.brands.create', compact('brand'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified brand in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ProductBrandRequest $request
      * @param ProductBrand $brand
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, ProductBrand $brand)
+    public function update(ProductBrandRequest $request, ProductBrand $brand)
     {
         try {
             dispatch(new AddProductBrandJob($request, $brand));
@@ -96,6 +96,6 @@ class ProductBrandsController extends Controller
 
         flash()->success('Brand successfully updated');
 
-        return view('admin.brand.index');
+        return redirect()->route('admin.brands.index');
     }
 }

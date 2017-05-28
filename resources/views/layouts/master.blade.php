@@ -170,5 +170,7 @@
         <script type="text/javascript" src="{{ asset('js/bootstrap.touchspin.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/home.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+
+        @stack('additional_scripts')
     </body>
 </html>

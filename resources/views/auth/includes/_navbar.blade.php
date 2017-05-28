@@ -212,6 +212,26 @@
                         </li>
                     </ul>
                 </li>
+                @if($authUser)
+                <li class="dropdown megamenu-80width ">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="master.blade.php#">
+                        More <b class="caret"> </b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="megamenu-content ProductDetailsList">
+                            <ul class="col-lg-2 col-md-2 col-sm-2 unstyled">
+                                <li class="no-border">
+                                    <p>
+                                        <strong>Brands</strong>
+                                    </p>
+                                </li>
+                                <li><a href="{{ route('admin.brands.index') }}">List of Brands</a></li>
+                                <li><a href="{{ route('admin.brands.create') }}">Add New Brand</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                @endif
             </ul>
 
             @if($authUser)

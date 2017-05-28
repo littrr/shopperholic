@@ -22,15 +22,6 @@ class CreateProductCategoriesTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('merchant_id')->nullable()->index();
             $table->timestamps();
-
-            $table->foreign('parent_id', 'fk_categories_parent_id')->references('id')->on('product_categories')
-                ->onUpdate('cascade')->onDelete('set null');
-
-            $table->foreign('user_id', 'fk_categories_user_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('set null');
-
-            $table->foreign('merchant_id', 'fk_categories_merchant_id')->references('id')->on('merchants')
-                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
