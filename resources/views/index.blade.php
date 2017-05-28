@@ -354,7 +354,6 @@
             </div>
         </div>
     </div>
-    <hr class="no-margin-top">
     <div class="parallax-section parallax-image-1">
         <div class="container">
             <div class="row ">
