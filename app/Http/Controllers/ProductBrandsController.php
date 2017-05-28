@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductBrandRequest;
-use Illuminate\Http\Request;
 use Shopperholic\Entities\ProductBrand;
 use App\Jobs\AddProductBrandJob;
 
