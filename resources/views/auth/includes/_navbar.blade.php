@@ -2,28 +2,29 @@
     <div class="navbar-top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
-                    <div class="pull-left ">
-                        <ul class="userMenu ">
-                            <li>
-                                <a href="master.blade.php#">
-                                    <i class="glyphicon glyphicon-info-sign hide visible-xs"></i>
-                                </a>
-                            </li>
-                            <li class="phone-number">
-                                <a href="callto:+233-544-909356">
-                                    <span>
-                                        <i class="glyphicon glyphicon-phone-alt "></i>
-                                    </span>
-                                    <span class="hidden-xs" style="margin-left:5px">
-                                        +233-544-909356
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
+                <div class="col-md-2" style="margin-top: 10px">
+                    <ul class="userMenu ">
+                        <li>
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 hidden-sm hidden-xs" style="margin-top: 10px">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+                {{--<div class="col-lg-6 col-sm-6 col-xs-6 col-md-4 no-margin no-padding">
                     <div class="pull-right">
                         <ul class="userMenu">
                             <li>
@@ -34,7 +35,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>
@@ -48,9 +49,9 @@
                 <i class="fa fa-shopping-cart colorWhite"> </i>
                 <span class="cartRespons colorWhite"> Cart (10) </span>
             </button>
-            <a class="navbar-brand " href="{{ url('/') }}">
+            {{--<a class="navbar-brand " href="{{ url('/') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}">
-            </a>
+            </a>--}}
         </div>
         <div class="navbar-cart  collapse">
             <div class="cartMenu  col-lg-4 col-xs-12 col-md-4 ">
@@ -159,82 +160,27 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="#">
-                        Products
-                    </a>
-                </li>
                 <li class="dropdown megamenu-fullwidth">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="master.blade.php#">
-                        Categories <b class="caret"> </b>
+                    <a href="{{ route('brands.index') }}">
+                        Brands
                     </a>
-                    <ul class="dropdown-menu">
-                        <li class="megamenu-content ">
-                            <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
-                                <li class="no-border">
-                                    <p class="promo-1"><strong> NEW COLLECTION </strong></p>
-                                </li>
-                                <li><a href="category.html"> ALL NEW PRODUCTS </a></li>
-                                <li><a href="category.html"> NEW TOPS </a></li>
-                                <li><a href="category.html"> NEW SHOES </a></li>
-                                <li><a href="category.html"> NEW TSHIRT </a></li>
-                                <li><a href="category.html"> NEW TSHOP </a></li>
-                            </ul>
-                            <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
-                                <li><a class="newProductMenuBlock" href="product-details.html"> <img class="img-responsive" src="images/site/promo1.jpg" alt="product"> <span class="ProductMenuCaption"> <i class="fa fa-caret-right"> </i> JEANS </span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                <li><a class="newProductMenuBlock" href="product-details.html"> <img class="img-responsive" src="images/site/promo2.jpg" alt="product"> <span class="ProductMenuCaption"> <i class="fa fa-caret-right"> </i> PARTY DRESS </span> </a></li>
-                            </ul>
-                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                <li><a class="newProductMenuBlock" href="product-details.html"> <img class="img-responsive" src="images/site/promo3.jpg" alt="product"> <span class="ProductMenuCaption"> <i class="fa fa-caret-right"> </i> SHOES </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown megamenu-80width ">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="master.blade.php#">
-                        SHOPS <b class="caret"> </b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="megamenu-content">
-                            <div class="col-lg-12">
-                                <ul class="brand-carousel">
-                                    <li><a href="#"><img src="images/brand/1.gif" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/2.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/3.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/4.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/5.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/6.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/7.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/8.png" alt="img"></a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-12" style="margin-top: 20px;">
-                                <ul class="brand-carousel">
-                                    <li><a href="#"><img src="images/brand/1.gif" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/2.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/3.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/4.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/5.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/6.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/7.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/8.png" alt="img"></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
                 </li>
             </ul>
-            <div class="nav navbar-nav text-right hidden-xs pull-right">
+            <div class="nav navbar-nav hidden-xs pull-right">
+                <div class="dropdown cartMenu" style="margin-top: -20px">
+                    <a href="#" class="dropdown-toggle">
+                        <span class="cartRespons text-capitalize">&nbsp;
+                            <span class="text-capitalize" style="margin-left: -5px">
+                                <small>Hello. Sign in</small><br>
+                            </span>
+                            Accounts & List <b class="caret"> </b>
+                        </span>
+                    </a>
+                </div>
                 <div class="dropdown  cartMenu">
                     <a href="#" class="dropdown-toggle">
                         <i class="fa fa-shopping-cart"> </i>
-                        <span class="cartRespons">&nbsp;(10)</span>
+                        <span class="cartRespons">&nbsp;CART (10)</span>
                     </a>
                 </div>
             </div>

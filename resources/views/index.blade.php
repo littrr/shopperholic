@@ -164,7 +164,7 @@
             </div>
         </div>
     </div>
-    {{--<div class="container main-container">
+    <div class="container main-container">
         <div class="row featuredPostContainer globalPadding style2">
             <h3 class="section-title style2 text-center"><span>NEW ARRIVALS</span></h3>
             <div id="productslider" class="owl-carousel owl-theme">
@@ -353,8 +353,7 @@
                 </div>
             </div>
         </div>
-    </div>--}}
-    <hr class="no-margin-top">
+    </div>
     <div class="parallax-section parallax-image-1">
         <div class="container">
             <div class="row ">
