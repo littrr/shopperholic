@@ -38,8 +38,16 @@
                 line-height: 20px;
                 display: block;
             }
-            .cartMenu div:hover>a {
-                background-color: #232F3F;
+            .cartMenu:hover>a.dropdown-toggle {
+                background: #232F3F;
+            }
+            .cartMenu .dropdown-menu {
+                padding-bottom: 20px;
+                border-radius: 0;
+                margin-top: 0;
+            }
+            .nav .open>a, .nav .open>a:hover, .nav .open>a:focus, .cartMenu:hover>a.dropdown-toggle {
+                background: #232F3F;
             }
         </style>
 

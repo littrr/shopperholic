@@ -168,7 +168,7 @@
             </ul>
             <div class="nav navbar-nav hidden-xs pull-right">
                 <div class="dropdown cartMenu" style="margin-top: -20px">
-                    <a href="#" class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="cartRespons text-capitalize">&nbsp;
                             <span class="text-capitalize" style="margin-left: -5px">
                                 <small>Hello. Sign in</small><br>
@@ -176,11 +176,23 @@
                             Accounts & List <b class="caret"> </b>
                         </span>
                     </a>
+                    <ul class="dropdown-menu" style="right: 50px;">
+                        <li>
+                            <div style="margin-bottom: 10px; padding: 8px">
+                                <a href="#" data-toggle="modal" data-target="#ModalLogin"
+                                   class="btn btn-sm btn-block btn-success">
+                                    Login
+                                </a>
+                            </div>
+                        </li>
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Your Orders</a></li>
+                    </ul>
                 </div>
                 <div class="dropdown  cartMenu">
                     <a href="#" class="dropdown-toggle">
                         <i class="fa fa-shopping-cart"> </i>
-                        <span class="cartRespons">&nbsp;CART (10)</span>
+                        <span class="cartRespons">&nbsp;CART (0)</span>
                     </a>
                 </div>
             </div>
