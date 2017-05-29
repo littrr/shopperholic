@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Shopperholic\Entities\Role;
+use Shopperholic\Exceptions\ConflictWithExistingRecord;
 
 class AddRoleJob
 {
