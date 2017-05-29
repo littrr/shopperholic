@@ -1,0 +1,50 @@
+<?php
+
+namespace Shopperholic\Entities;
+
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Laratrust\LaratrustRole;
+
+class Role extends LaratrustRole
+{
+    /**
+     * App owner role
+     */
+    const APP_OWNER = 'app-owner';
+
+    /**
+     * Account owner role
+     */
+    const ACCOUNT_OWNER = 'account-owner';
+
+    /**
+     * @var array
+     */
+    public $fillable = ['name', 'display_name', 'description', 'userable_id', 'userable_type'];
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'name';
+    }
+
+    /**
+     * @return MorphTo
+     */
+    public function userable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Sluggify the name field
+     *
+     * @param string $name
+     */
+    public function setNameAttribute(string $name)
+    {
+        $this->attributes['name'] = str_slug($name);
+    }
+}
