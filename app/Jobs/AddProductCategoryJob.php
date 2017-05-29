@@ -51,6 +51,8 @@ class AddProductCategoryJob
             }
         }
 
+        $this->category->slug = $this->request->get('name');
+
         $this->category->save();
 
         return $this->category;

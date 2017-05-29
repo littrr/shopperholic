@@ -10,11 +10,30 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['as' => 'home'], function() {
+    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+});
+
+// Routes for administrator
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function() {
+
+    // Routes for brands
+    Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {
+        Route::get('', ['as' => 'index', 'uses' => 'ProductBrandsController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'ProductBrandsController@create']);
+        Route::post('', ['as' => 'store', 'uses' => 'ProductBrandsController@store']);
+        Route::get('{brand}/edit', ['as' => 'edit', 'uses' => 'ProductBrandsController@edit']);
+        Route::put('{brand}', ['as' => 'update', 'uses' => 'ProductBrandsController@update']);
+    });
+
+    // Routes for categories
+    Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+        Route::get('', ['as' => 'index', 'uses' => 'ProductCategoriesController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'ProductCategoriesController@create']);
+        Route::post('', ['as' => 'store', 'uses' => 'ProductCategoriesController@store']);
+        Route::get('{category}/edit', ['as' => 'edit', 'uses' => 'ProductCategoriesController@edit']);
+        Route::put('{category}', ['as' => 'update', 'uses' => 'ProductCategoriesController@update']);
+    });
+});
