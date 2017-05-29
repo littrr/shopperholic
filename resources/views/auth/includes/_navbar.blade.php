@@ -228,6 +228,15 @@
                                 <li><a href="{{ route('admin.brands.index') }}">List of Brands</a></li>
                                 <li><a href="{{ route('admin.brands.create') }}">Add New Brand</a></li>
                             </ul>
+                            <ul class="col-lg-2 col-md-2 col-sm-2 unstyled">
+                                <li class="no-border">
+                                    <p>
+                                        <strong>Categories</strong>
+                                    </p>
+                                </li>
+                                <li><a href="{{ route('admin.categories.index') }}">List of Categories</a></li>
+                                <li><a href="{{ route('admin.categories.create') }}">Add New Category</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </li>

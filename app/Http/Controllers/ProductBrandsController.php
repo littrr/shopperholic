@@ -47,6 +47,8 @@ class ProductBrandsController extends Controller
                 'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             flash()->error('An error occurred whiles adding a brand, please try again.');
+
+            return back()->withInput();
         }
 
         flash()->success('Brand successfully added');
@@ -92,6 +94,8 @@ class ProductBrandsController extends Controller
                 'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             flash()->error('An error occurred whiles updating brand, please try again.');
+
+            return back()->withInput();
         }
 
         flash()->success('Brand successfully updated');

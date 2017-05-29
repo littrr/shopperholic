@@ -27,4 +27,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         Route::get('{brand}/edit', ['as' => 'edit', 'uses' => 'ProductBrandsController@edit']);
         Route::put('{brand}', ['as' => 'update', 'uses' => 'ProductBrandsController@update']);
     });
+
+    // Routes for categories
+    Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+        Route::get('', ['as' => 'index', 'uses' => 'ProductCategoriesController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'ProductCategoriesController@create']);
+        Route::post('', ['as' => 'store', 'uses' => 'ProductCategoriesController@store']);
+        Route::get('{category}/edit', ['as' => 'edit', 'uses' => 'ProductCategoriesController@edit']);
+        Route::put('{category}', ['as' => 'update', 'uses' => 'ProductCategoriesController@update']);
+    });
 });
