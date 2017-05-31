@@ -11,7 +11,7 @@
         <title>Shopperholic Store</title>
 
         <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-        <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('css/skin-5.css') }}">
+        <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('css/skin-6.css') }}">
         <link href="{{ asset('plugins/swiper-master/css/swiper.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">

@@ -41,10 +41,10 @@ class Role extends LaratrustRole
     /**
      * Sluggify the name field
      *
-     * @param string $name
+     * @param string $displayName
      */
-    public function setNameAttribute(string $name)
+    public function setNameAttribute(string $displayName)
     {
-        $this->attributes['name'] = str_slug($name);
+        $this->attributes['name'] = str_slug($displayName);
     }
 }

@@ -36,4 +36,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         Route::get('{category}/edit', ['as' => 'edit', 'uses' => 'ProductCategoriesController@edit']);
         Route::put('{category}', ['as' => 'update', 'uses' => 'ProductCategoriesController@update']);
     });
+
+    // Routes for roles
+    Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {
+        Route::get('', ['as' => 'index', 'uses' => 'RolesController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'RolesController@create']);
+        Route::post('', ['as' => 'store', 'uses' => 'RolesController@store']);
+        Route::get('{role}/edit', ['as' => 'edit', 'uses' => 'RolesController@edit']);
+        Route::put('{role}', ['as' => 'update', 'uses' => 'RolesController@update']);
+    });
 });
