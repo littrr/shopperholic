@@ -7,6 +7,7 @@ use App\Jobs\GetPermissionsJob;
 use Illuminate\Http\Request;
 use Shopperholic\Entities\Role;
 use Shopperholic\Exceptions\ConflictWithExistingRecord;
+use Shopperholic\Entities\Permission;
 
 class RolesController extends Controller
 {
@@ -17,7 +18,9 @@ class RolesController extends Controller
      */
     public function index()
     {
+        $roles = Role::with(['permissions'])->paginate(30);
 
+        return view('admin.roles.index', compact('roles'));
     }
 
     /**
@@ -83,12 +86,15 @@ class RolesController extends Controller
     /**
      * show the form for editing the specified role.
      *
-     * @param  int  $id
+     * @param Role $role
      * @return \illuminate\http\response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        $permissions = Permission::getGroupedPermissions();
+        $addedPermissions = $role->permissions()->pluck('name')->all();
+
+        return view('admin.roles.create', compact('role', 'permissions', 'addedPermissions'));
     }
 
     /**

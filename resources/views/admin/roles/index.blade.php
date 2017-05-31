@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <div class="container main-container headerOffset">
-        {!! Breadcrumbs::render('categories') !!}
+        {!! Breadcrumbs::render('roles') !!}
         @include('flash::message')
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-7">
@@ -13,20 +13,28 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>Name</th>
-                                    <th>Parent</th>
+                                    <th>Description</th>
+                                    <th>Permissions</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories as $category)
+                                @foreach($roles as $role)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->parentCategory->name ?? '_'}}</td>
+                                        <td>{{ $role->display_name }}</td>
+                                        <td>{{ $role->description }}</td>
                                         <td>
-                                            <a href="{{route('admin.categories.edit', ['category' => $category])}}" class="btn btn-inline btn-success btn-sm">
+                                            {{-- Display up to 3 permissions for the role --}}
+                                            @foreach ($role->permissions->take(3) as $permission)
+                                                {{$permission->display_name}}{{!$loop->last ? ', ' : ''}}
+                                                @if ($loop->last && $role->permissions->count() > 3)
+                                                    &nbsp;etc
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <a href="{{route('admin.roles.edit', ['role' => $role])}}" class="btn btn-inline btn-success btn-sm">
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
                                         </td>
@@ -45,7 +53,7 @@
                                         No Role added
                                     </h3>
                                     <p class="text-center">
-                                        <a class="btn btn-primary" type="button" href="{{ route('admin.categories.create') }}">Add New Category</a>
+                                        <a class="btn btn-primary" type="button" href="{{ route('admin.roles.create') }}">Add New Role</a>
                                     </p>
                                 </div>
                             </div>
