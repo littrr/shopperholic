@@ -5,7 +5,17 @@
         @include('flash::message')
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-7">
-                <h1 class="section-title-inner">List of Brands</h1>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="section-title-inner">List of Brands</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ route('admin.brands.create') }}" class="btn btn-primary pull-right">Add Brand</a>
+                        </div>
+                    </div>
+                </div>
+
                 @if($brands->count())
                 <div class="col-lg-12 col-md-12 col-sm 12">
 

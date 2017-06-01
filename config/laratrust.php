@@ -33,7 +33,7 @@ return [
     |
     */
     'user_models' => [
-        'users' => 'App\User',
+        'users' => 'Shopperholic\Entities\User',
     ],
 
     /*
@@ -45,7 +45,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => 'App\Role',
+    'role' => 'Shopperholic\Entities\Role',
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => 'App\Permission',
+    'permission' => 'Shopperholic\Entities\Permission',
 
     /*
     |--------------------------------------------------------------------------

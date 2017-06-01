@@ -14,10 +14,10 @@ class PermissionsTableSeeder extends Seeder
     {
         $data[] = self::getRoleManagementPermissions();
         $data[] = self::getUserManagementPermissions();
-        $data[] = self::getDeliveryManagementPermissions();
         $data[] = self::getInventoryManagementPermissions();
         $data[] = self::getMerchantManagementPermissions();
         $data[] = self::getOrderManagementPermissions();
+        $data[] = self::getDeliveryManagementPermissions();
 
         $permissions = collect($data)
             ->filter(function (array $row) {
@@ -171,7 +171,7 @@ class PermissionsTableSeeder extends Seeder
     public static function getInventoryManagementPermissions(): array
     {
         return [
-            'group_name' => 'User Inventory',
+            'group_name' => 'Inventory Management',
             'permissions' => [
                 [
                     'name' => 'add-product',
@@ -189,7 +189,7 @@ class PermissionsTableSeeder extends Seeder
                 ],
                 [
                     'name' => 'delete-product',
-                    'display_name' => 'Delete User',
+                    'display_name' => 'Delete Product',
                     'description' => 'User can delete products',
                     'is_app_owner_permission' => true,
                     'is_merchant_permission' => true

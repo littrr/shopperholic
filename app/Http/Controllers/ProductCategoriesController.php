@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\AddProductCategoryJob;
 use Illuminate\Http\Request;
 use Shopperholic\Entities\ProductCategory;
+use Shopperholic\Exceptions\ConflictWithExistingRecord;
 
 class ProductCategoriesController extends Controller
 {
@@ -44,6 +45,16 @@ class ProductCategoriesController extends Controller
         try {
             dispatch(new AddProductCategoryJob($request));
         } catch (\Exception $e) {
+            if ($e instanceof ConflictWithExistingRecord) {
+                logger('User tried to add a category that already exists', [
+                    'user' => $request->user()
+                ]);
+
+                flash()->error('Category already exists');
+
+                return back()->withInput();
+            }
+
             logger('An error occurred whiles adding a category', [
                 'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 

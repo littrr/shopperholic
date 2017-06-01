@@ -237,6 +237,15 @@
                                 <li><a href="{{ route('admin.categories.index') }}">List of Categories</a></li>
                                 <li><a href="{{ route('admin.categories.create') }}">Add New Category</a></li>
                             </ul>
+                            <ul class="col-lg-2 col-md-2 col-sm-2 unstyled">
+                                <li class="no-border">
+                                    <p>
+                                        <strong>Roles</strong>
+                                    </p>
+                                </li>
+                                <li><a href="{{ route('admin.roles.index') }}">List of Roles</a></li>
+                                <li><a href="{{ route('admin.roles.create') }}">Add New Role</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </li>

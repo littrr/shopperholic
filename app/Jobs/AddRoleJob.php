@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Shopperholic\Entities\Permission;
 use Shopperholic\Entities\Role;
 use Shopperholic\Exceptions\ConflictWithExistingRecord;
 
@@ -28,7 +29,7 @@ class AddRoleJob
     {
         $this->request = $request;
         $this->role = $role ?? new Role([
-            'name' => $this->request->get('name'),
+            'name' => $this->request->get('display_name'),
             'user_id' => $this->request->user()->id
         ]);
     }
@@ -46,7 +47,15 @@ class AddRoleJob
             $this->createRole();
 
             if ($this->request->has('permissions')) {
-                $this->role->permissions()->sync($this->request->get('permissions'));
+                $perms = collect($this->request->get('permissions'))
+                    ->map(function($perm) {
+                        return Permission::whereName($perm)->first();
+                    })
+                    ->filter(function($rec) {
+                        return !empty($rec);
+                    });
+
+                $this->role->permissions()->sync($perms->pluck('id')->all());
             }
 
             $this->role->save();
