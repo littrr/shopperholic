@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Http\Request;
 use Shopperholic\Entities\ProductCategory;
+use Shopperholic\Exceptions\ConflictWithExistingRecord;
 
 class AddProductCategoryJob
 {
@@ -35,6 +36,8 @@ class AddProductCategoryJob
      */
     public function handle()
     {
+        $this->checkIsNotExistingRole();
+
         return $this->createOrUpdateCategory();
     }
 
@@ -56,5 +59,18 @@ class AddProductCategoryJob
         $this->category->save();
 
         return $this->category;
+    }
+
+    public function checkIsNotExistingRole()
+    {
+        $category = ProductCategory::where([
+            'name' => $this->request->get('name'),
+        ])->first();
+
+        if (empty($category) || $category->id === $this->category->id) {
+            return false;
+        }
+
+        throw ConflictWithExistingRecord::fromModel($category);
     }
 }

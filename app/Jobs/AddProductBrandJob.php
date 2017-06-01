@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use Illuminate\Http\Request;
-use Shopperholic\Entities\Brand;
 use Shopperholic\Entities\ProductBrand;
+use Shopperholic\Exceptions\ConflictWithExistingRecord;
 
 class AddProductBrandJob
 {
@@ -36,6 +36,8 @@ class AddProductBrandJob
      */
     public function handle()
     {
+        $this->checkIsNotExistingRole();
+
         return $this->createOrUpdateBrand();
     }
 
@@ -57,5 +59,18 @@ class AddProductBrandJob
         $this->brand->save();
 
         return $this->brand;
+    }
+
+    public function checkIsNotExistingRole()
+    {
+        $brand = ProductBrand::where([
+            'name' => $this->request->get('name'),
+        ])->first();
+
+        if (empty($brand) || $brand->id === $this->brand->id) {
+            return false;
+        }
+
+        throw ConflictWithExistingRecord::fromModel($brand);
     }
 }
