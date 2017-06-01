@@ -73,17 +73,6 @@ class RolesController extends Controller
     }
 
     /**
-     * display the specified role.
-     *
-     * @param  int  $id
-     * @return \illuminate\http\response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * show the form for editing the specified role.
      *
      * @param Role $role
@@ -100,23 +89,26 @@ class RolesController extends Controller
     /**
      * update the specified role in storage.
      *
-     * @param  \illuminate\http\request  $request
-     * @param  int  $id
+     * @param  \illuminate\http\request $request
+     * @param Role $role
      * @return \illuminate\http\response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
-    }
+        try {
+            dispatch(new AddRoleJob($request, $role));
+        } catch (\Exception $e) {
+            logger('An error occurred whiles updating a role', [
+                'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()
+            ]);
 
-    /**
-     * remove the specified role from storage.
-     *
-     * @param  int  $id
-     * @return \illuminate\http\response
-     */
-    public function destroy($id)
-    {
-        //
+            flash()->error('An error occurred whiles updating a role');
+
+            return back()->withInput();
+        }
+
+        flash()->success('Role successfully updated');
+
+        return redirect()->route('admin.roles.index');
     }
 }
