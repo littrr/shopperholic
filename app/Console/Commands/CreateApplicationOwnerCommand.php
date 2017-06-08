@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Shopperholic\Entities\Role;
 use Shopperholic\Entities\User;
 use Illuminate\Support\Facades\DB;
 
@@ -121,10 +122,18 @@ class CreateApplicationOwnerCommand extends Command
         return tap($user)->save();
     }
 
-    //todo: Attach owner role
+    /**
+     * @param User $user
+     */
     private function attachRoleToAppOwner(User $user)
     {
-        //
+        $role = Role::create([
+            'name' => Role::APP_OWNER,
+            'display_name' => 'Application Owner',
+            'description' => 'Application owner role'
+        ]);
+
+        $user->syncRoles([$role->id]);
     }
 
     /**
