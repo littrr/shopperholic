@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Shopperholic\Entities\ProductBrand;
 use App\Jobs\AddProductBrandJob;
+use Shopperholic\Exceptions\ConflictWithExistingRecord;
+use Illuminate\Http\Request;
 
 class ProductBrandsController extends Controller
 {
@@ -33,29 +34,41 @@ class ProductBrandsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created brand in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         try {
             dispatch(new AddProductBrandJob($request));
         } catch (\Exception $e) {
-            logger('An error occurred whiles creating a product brand', [
+            if ($e instanceof ConflictWithExistingRecord) {
+                logger('User tried to add a brand that already exists', [
+                    'user' => $request->user(),
+                ]);
+
+                flash()->error('Brand already exists');
+
+                return back()->withInput();
+            }
+
+            logger('An error occurred whiles creating a brand', [
                 'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
-            flash()->error('An error occurred whiles adding a brand, please try again.');
+            flash()->error('An error occurred whiles creating a brand, please try again.');
+
+            return back()->withInput();
         }
 
         flash()->success('Brand successfully added');
 
-        return view('admin.brands.index');
+        return redirect()->route('admin.brands.index');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified brand.
      *
      * @param ProductBrand $brand
      * @return \Illuminate\Http\Response
@@ -66,22 +79,22 @@ class ProductBrandsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified brand.
      *
      * @param ProductBrand $brand
      * @return \Illuminate\Http\Response
      */
     public function edit(ProductBrand $brand)
     {
-        return view('admin.brand.create', compact('brand'));
+        return view('admin.brands.create', compact('brand'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified brand in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @param ProductBrand $brand
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, ProductBrand $brand)
     {
@@ -92,10 +105,12 @@ class ProductBrandsController extends Controller
                 'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             flash()->error('An error occurred whiles updating brand, please try again.');
+
+            return back()->withInput();
         }
 
         flash()->success('Brand successfully updated');
 
-        return view('admin.brand.index');
+        return redirect()->route('admin.brands.index');
     }
 }
