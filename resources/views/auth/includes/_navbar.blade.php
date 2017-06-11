@@ -180,37 +180,9 @@
                     </ul>
                 </li>
                 <li class="dropdown megamenu-80width ">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="master.blade.php#">
-                        Shops <b class="caret"> </b>
+                    <a href="#">
+                        Shops
                     </a>
-                    <ul class="dropdown-menu">
-                        <li class="megamenu-content">
-                            <div class="col-lg-12">
-                                <ul class="brand-carousel">
-                                    <li><a href="#"><img src="images/brand/1.gif" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/2.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/3.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/4.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/5.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/6.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/7.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/8.png" alt="img"></a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-12" style="margin-top: 20px;">
-                                <ul class="brand-carousel">
-                                    <li><a href="#"><img src="images/brand/1.gif" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/2.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/3.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/4.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/5.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/6.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/7.png" alt="img"></a></li>
-                                    <li><a href="#"><img src="images/brand/8.png" alt="img"></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
                 </li>
                 @if($authUser)
                 <li class="dropdown megamenu-80width ">
@@ -251,40 +223,50 @@
                 </li>
                 @endif
             </ul>
-
-            @if($authUser)
-            <div class="nav navbar-nav text-right hidden-xs pull-right">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $authUser->name }}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ url('/logout') }}" method="post" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            @else
-            <div class="nav navbar-nav text-right hidden-xs pull-right">
-                <div class="cartMenu">
-                    <a href="#" class="dropdown-toggle pull-right" data-toggle="modal" data-target="#ModalLogin">
-                        <span class="cartResponse">Hello, Sign In</span>
-                    </a>
+            <form action="#" method="POST">
+                <div class="col-md-5 search-form hidden-sm hidden-xs">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search"/>
+                        <span class="input-group-addon">
+                            <a href="#"><i class="fa fa-search"></i></a>
+                        </span>
+                    </div>
                 </div>
-            </div>
-            @endif
+            </form>
+            @if($authUser)
+                <div class="nav navbar-nav text-right hidden-xs pull-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                {{ $authUser->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Logout
+                                    </a>
 
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="post" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <div class="nav navbar-nav text-right hidden-xs pull-right">
+                    <div class="cartMenu">
+                        <a href="#" class="dropdown-toggle pull-right" data-toggle="modal" data-target="#ModalLogin">
+                            <span class="cartResponse">Hello, Sign In</span>
+                        </a>
+                    </div>
+                </div>
+            @endif
             <div class="nav navbar-nav text-right hidden-xs pull-right">
                 <div class="dropdown  cartMenu">
                     <a href="#" class="dropdown-toggle pull-right">
-                        <i class="fa fa-shopping-cart"> </i>
+                        <i class="fa fa-shopping-cart"> </i>  Cart (0)
                         <span class="cartResponse"></span>
                     </a>
                 </div>
