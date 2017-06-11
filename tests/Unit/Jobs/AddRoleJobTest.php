@@ -30,6 +30,7 @@ class AddRoleJobTest extends TestCase
 
         $this->assertInstanceOf(Role::class, $createdRole);
         $this->assertEquals($role->name, $createdRole->name);
+        $this->assertNotNull($createdRole->user);
         $this->assertCount(3, $createdRole->permissions);
         $this->assertEquals('add-product', $createdRole->permissions->first()->name);
         $this->assertEquals('delete-product', $createdRole->permissions->last()->name);

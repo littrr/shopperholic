@@ -25,7 +25,7 @@ class CanSendNewAccountMailTest extends TestCase
 
         $roles = factory(Role::class, 2)->create();
 
-        $this->request->merge(array_merge($user, ['roles' => $roles->toArray()]));
+        $this->request->merge(array_merge($user, ['roles' => $roles->pluck('name')->toArray()]));
 
         $createdUser = dispatch(new AddUserJob($this->request));
 
@@ -42,10 +42,10 @@ class CanSendNewAccountMailTest extends TestCase
 
         $user = factory(User::class)->create();
 
-        $this->request->merge([
+        $this->request->merge(array_merge([
             'name' => 'Gabriel April',
             'reset_password' => true
-        ]);
+        ], ['roles' => factory(Role::class)->make()->pluck('name')->all()]));
 
         $updatedUser = dispatch(new AddUserJob($this->request, $user));
 

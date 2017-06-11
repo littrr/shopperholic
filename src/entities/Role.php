@@ -2,6 +2,7 @@
 
 namespace Shopperholic\Entities;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Laratrust\LaratrustRole;
 
@@ -20,7 +21,7 @@ class Role extends LaratrustRole
     /**
      * @var array
      */
-    public $fillable = ['name', 'display_name', 'description', 'userable_id', 'userable_type'];
+    public $fillable = ['name', 'display_name', 'description', 'user_id', 'userable_id', 'userable_type'];
 
     /**
      * @return string
@@ -46,5 +47,13 @@ class Role extends LaratrustRole
     public function setNameAttribute(string $displayName)
     {
         $this->attributes['name'] = str_slug($displayName);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -87,7 +87,7 @@ class AddUserJob
      */
     private function attachRoles()
     {
-        $roles = Role::whereIn('name', collect($this->request->get('roles'))->pluck('name')->all())->get();
+        $roles = Role::whereIn('name', $this->request->get('roles'))->get();
 
         $this->user->syncRoles($roles->pluck('id')->all());
     }

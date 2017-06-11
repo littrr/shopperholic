@@ -21,7 +21,7 @@ class AddUserJobTest extends TestCase
 
         $roles = factory(Role::class, 2)->create();
 
-        $this->request->merge(array_merge($user, ['roles' => $roles->toArray()]));
+        $this->request->merge(array_merge($user, ['roles' => $roles->pluck('name')->toArray()]));
 
         $createdUser = dispatch(new AddUserJob($this->request));
         $this->assertCount(2, $createdUser->roles);
@@ -37,10 +37,10 @@ class AddUserJobTest extends TestCase
 
         $user = factory(User::class)->create();
 
-        $this->request->merge([
+        $this->request->merge(array_merge([
             'name' => 'Godwin Hottor',
             'email' => 'godwinhottor@kingsmail.com'
-        ]);
+        ], ['roles' =>factory(Role::class, 2)->make()->pluck('name')->all()]));
 
         $updatedUser = dispatch(new AddUserJob($this->request, $user));
 
