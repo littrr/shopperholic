@@ -18,29 +18,8 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
         <style>
-            .nav>li>a {
-                position: relative;
-                display: block;
-                padding: 0;
-                margin-top: 20px;
-            }
-            .nav>li.active, .nav>li>a:hover, .nav>li>a:focus, .nav>li:hover>a {
-                background: #232F3F;
-            }
-            .cartMenu a.dropdown-toggle, .cartMenu a#cart-sidebar-toggle {
-                padding-bottom: 15px;
-                padding-top: 15px;
-                padding-left: 20px;
-                padding-right: 0;
-                color: #FFFFFF;
-                font-size: 14px;
-                font-weight: 600;
-                text-transform: uppercase;
-                line-height: 20px;
-                display: block;
-            }
-            .cartMenu div:hover>a {
-                background-color: #232F3F;
+            .search-form {
+                margin-top: 6px
             }
         </style>
 
