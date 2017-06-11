@@ -17,7 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(30);
+        $users = User::with(['roles'])->paginate(30);
 
         return view('admin.users.index', compact('users'));
     }
@@ -71,17 +71,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified user.
      *
      * @param User $user
@@ -97,23 +86,25 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
-    }
+        try {
+            dispatch(new AddUserJob($request, $user));
+        } catch (\Exception $e) {
+            logger('An error occurred whiles updating user', [
+                'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            flash()->error('An error occurred whiles updating user, please try again.');
+
+            return back()->withInput();
+        }
+
+        flash()->success('User successfully updated');
+
+        return redirect()->route('admin.users.index');
     }
 }
