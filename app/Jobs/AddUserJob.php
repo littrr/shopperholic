@@ -3,7 +3,11 @@
 namespace App\Jobs;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Shopperholic\Entities\Role;
 use Shopperholic\Entities\User;
+use App\Mail\NewUserAccountMail;
+use App\Mail\AdminRequestToPasswordResetMail;
 
 class AddUserJob
 {
@@ -15,6 +19,14 @@ class AddUserJob
      * @var User
      */
     private $user;
+    /**
+     * @var
+     */
+    private $isNewUserRegistration;
+    /**
+     * @var
+     */
+    private $shouldSendMailForPasswordReset;
 
     /**
      * Create a new job instance.
@@ -26,6 +38,8 @@ class AddUserJob
     {
         $this->request = $request;
         $this->user = $user ?? new User(['user_id' => $this->request->user()->id]);
+        $this->isNewUserRegistration = $this->user->exists ? false : true;
+        $this->shouldSendMailForPasswordReset = $this->request->get('reset_password', false);
     }
 
     /**
@@ -57,6 +71,38 @@ class AddUserJob
 
         $this->user->save();
 
+        $this->attachRoles();
+
+        $this->sendPasswordResetNotification();
+
         return $this->user;
+    }
+
+    /**
+     * Attach roles to user
+     */
+    private function attachRoles()
+    {
+        $roles = Role::whereIn('name', collect($this->request->get('roles'))->pluck('name')->all())->get();
+
+        $this->user->syncRoles($roles->pluck('id')->all());
+    }
+
+    /**
+     * @return bool
+     */
+    private function sendPasswordResetNotification()
+    {
+        $mail = Mail::to($this->user);
+
+        if ($this->isNewUserRegistration) {
+            logger('Sending new user account created mail', ['recipient' => $this->user->email]);
+            return $mail->queue(new NewUserAccountMail($this->user, $this->request->user()));
+        }
+
+        if ($this->shouldSendMailForPasswordReset) {
+            logger('Sending password reset mail', ['recipient' => $this->user->email]);
+            return $mail->queue(new AdminRequestToPasswordResetMail($this->user, $this->request->user()));
+        }
     }
 }

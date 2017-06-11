@@ -2,10 +2,12 @@
 
 namespace Shopperholic\Entities;
 
+use App\Mail\ResetPasswordMail;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Mail;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Support\Facades\Hash;
 
@@ -84,5 +86,16 @@ class User extends Authenticatable
     public function isAccountOwner()
     {
         return boolval($this->is_account_owner);
+    }
+
+    /**
+     * Send password reset mail
+     *
+     * @param string $token
+     * @return mixed
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        return Mail::to($this->email)->queue(new ResetPasswordMail($this, $token));
     }
 }

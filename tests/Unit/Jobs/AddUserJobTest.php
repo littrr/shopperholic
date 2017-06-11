@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Jobs\AddUserJob;
+use Shopperholic\Entities\Role;
 use Shopperholic\Entities\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -18,9 +19,14 @@ class AddUserJobTest extends TestCase
 
         $user = factory(User::class)->make()->toArray();
 
-        $this->request->merge($user);
+        $roles = factory(Role::class, 2)->create();
+
+        $this->request->merge(array_merge($user, ['roles' => $roles->toArray()]));
 
         $createdUser = dispatch(new AddUserJob($this->request));
+        $this->assertCount(2, $createdUser->roles);
+        $this->assertEquals($roles->first()->name, $createdUser->roles->first()->name);
+        $this->assertEquals($roles->last()->name, $createdUser->roles->last()->name);
         $this->assertInstanceOf(User::class, $createdUser);
         $this->assertNotNull($createdUser->user);
     }

@@ -45,4 +45,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         Route::get('{role}/edit', ['as' => 'edit', 'uses' => 'RolesController@edit']);
         Route::put('{role}', ['as' => 'update', 'uses' => 'RolesController@update']);
     });
+
+    // Routes for users
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+        Route::get('', ['as' => 'index', 'uses' => 'UsersController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'UsersController@create']);
+        Route::post('', ['as' => 'store', 'uses' => 'UsersController@store']);
+        Route::get('{user}/edit', ['as' => 'edit', 'uses' => 'UsersController@edit']);
+        Route::put('{user}', ['as' => 'update', 'uses' => 'UsersController@update']);
+    });
 });

@@ -48,8 +48,24 @@ Breadcrumbs::register('create-role', function($breadcrumbs) {
     $breadcrumbs->push('Role', route('admin.roles.create'));
 });
 
-// Categories / Furniture
+// Roles / Product-Manager
 Breadcrumbs::register('edit-role', function($breadcrumbs, $role) {
     $breadcrumbs->parent('roles');
     $breadcrumbs->push($role->name, route('admin.roles.edit', $role->id));
+});
+
+// Users
+Breadcrumbs::register('users', function($breadcrumbs) {
+    $breadcrumbs->push('Users', route('admin.users.index'));
+});
+
+// Users
+Breadcrumbs::register('create-user', function($breadcrumbs) {
+    $breadcrumbs->push('User', route('admin.users.create'));
+});
+
+// Users / Joseph Sarkodie
+Breadcrumbs::register('edit-user', function($breadcrumbs, $user) {
+    $breadcrumbs->parent('users');
+    $breadcrumbs->push($user->name, route('admin.users.edit', $user->id));
 });
