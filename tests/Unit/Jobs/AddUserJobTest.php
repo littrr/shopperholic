@@ -48,4 +48,18 @@ class AddUserJobTest extends TestCase
         $this->assertEquals('Godwin Hottor', $updatedUser->name);
         $this->assertEquals('godwinhottor@kingsmail.com', $updatedUser->email);
     }
+
+    /**
+     * @expectedException Shopperholic\Exceptions\ConflictWithExistingRecord
+     */
+    public function test_exception_thrown_when_adding_a_user_with_email_that_already_exists()
+    {
+        $this->authenticateUser();
+
+        $user = factory(User::class)->create();
+
+        $this->request->merge(factory(User::class)->make(['email' => $user->email])->toArray());
+
+        dispatch(new AddUserJob($this->request));
+    }
 }

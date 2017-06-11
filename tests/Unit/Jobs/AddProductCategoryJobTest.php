@@ -57,4 +57,18 @@ class AddProductCategoryJobTest extends TestCase
         $this->assertInstanceOf(ProductCategory::class, $createdCategory->parentCategory);
         $this->assertEquals($parent->id, $createdCategory->parentCategory->id);
     }
+
+    /**
+     * @expectedException Shopperholic\Exceptions\ConflictWithExistingRecord
+     */
+    public function test_exception_thrown_when_adding_a_category_with_name_that_already_exists()
+    {
+        $this->authenticateUser();
+
+        $category = factory(ProductCategory::class)->create();
+
+        $this->request->merge(factory(ProductCategory::class)->make(['name' => $category->name])->toArray());
+
+        dispatch(new AddProductCategoryJob($this->request));
+    }
 }

@@ -3,11 +3,13 @@
 namespace App\Jobs;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Shopperholic\Entities\Role;
 use Shopperholic\Entities\User;
 use App\Mail\NewUserAccountMail;
 use App\Mail\AdminRequestToPasswordResetMail;
+use Shopperholic\Exceptions\ConflictWithExistingRecord;
 
 class AddUserJob
 {
@@ -49,15 +51,23 @@ class AddUserJob
      */
     public function handle(): User
     {
-        return $this->createOrUpdateUser();
+        return DB::transaction(function() {
+            $this->checkIsExistingUser();
+
+            $this->createOrUpdateUser();
+
+            $this->attachRoles();
+
+            $this->sendPasswordResetNotification();
+
+            return $this->user;
+        });
     }
 
     /**
      * Create or update a user
-     *
-     * @return User
      */
-    private function createOrUpdateUser(): User
+    private function createOrUpdateUser()
     {
         foreach($this->user->getFillable() as $fillable) {
             if ($this->request->has($fillable)) {
@@ -70,12 +80,6 @@ class AddUserJob
         }
 
         $this->user->save();
-
-        $this->attachRoles();
-
-        $this->sendPasswordResetNotification();
-
-        return $this->user;
     }
 
     /**
@@ -104,5 +108,21 @@ class AddUserJob
             logger('Sending password reset mail', ['recipient' => $this->user->email]);
             return $mail->queue(new AdminRequestToPasswordResetMail($this->user, $this->request->user()));
         }
+    }
+
+    /**
+     * Check if user exists
+     *
+     * @return bool
+     */
+    private function checkIsExistingUser(): Bool
+    {
+        $user = User::whereEmail($this->request->get('email'))->first();
+
+        if (empty($user) || $user->id === $this->user->id) {
+            return false;
+        }
+
+        throw ConflictWithExistingRecord::fromModel($user);
     }
 }

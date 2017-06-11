@@ -40,4 +40,18 @@ class AddProductBrandJobTest extends TestCase
         $this->assertInstanceOf(ProductBrand::class, $updatedBrand);
         $this->assertEquals('Gucci', $updatedBrand->name);
     }
+
+    /**
+     * @expectedException Shopperholic\Exceptions\ConflictWithExistingRecord
+     */
+    public function test_exception_thrown_when_adding_a_brand_with_name_that_already_exists()
+    {
+        $this->authenticateUser();
+
+        $brand = factory(ProductBrand::class)->create();
+
+        $this->request->merge(factory(ProductBrand::class)->make(['name' => $brand->name])->toArray());
+
+        dispatch(new AddProductBrandJob($this->request));
+    }
 }
