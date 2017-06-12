@@ -67,6 +67,7 @@
                         </div>
                     </div>
                 @endif
+                @include('admin.includes._nav_buttons')
             </div>
             <div class="col-lg-3 col-md-3 col-sm-5"></div>
         </div>

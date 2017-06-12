@@ -11,13 +11,7 @@
                         <p class="required"><sup>*</sup> Required field</p>
                     </div>
                     @include('admin.users.includes._create')
-                    <div class="col-lg-12 clearfix">
-                        <ul class="pager">
-                            <li class="previous pull-right"><a href="index.html"> <i class="fa fa-home"></i> Go to Shop </a>
-                            </li>
-                            <li class="next pull-left"><a href="account.html"> ← Back to My Account</a></li>
-                        </ul>
-                    </div>
+                    @include('admin.includes._nav_buttons')
                 </div>
 
             </div>
