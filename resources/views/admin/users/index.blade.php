@@ -37,7 +37,7 @@
                                         <td>{{ $user->contact_number }}</td>
                                         <td>
                                             @foreach($user->roles as $role)
-                                                {{ $role->display_name }}
+                                                {{ $role->display_name }}{{!$loop->last ? ', ' : ''}}
                                             @endforeach
                                         </td>
                                         <td>

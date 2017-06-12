@@ -31,12 +31,13 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <h2 class="block-title-2"> Roles </h2>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-bottom: 2%">
         <div class="row">
             @foreach($roles as $role)
             <div class="col-sm-3">
                 <label class="checkbox">
-                    <input type="checkbox" name="roles[]" id="roles" class="role-input" value="{{ $role->name }}"><i></i>{{ $role->display_name }}
+                    <input type="checkbox" name="roles[]" id="roles" class="role-input" value="{{ $role->name }}"
+                     {{in_array($role->id, $user->roles->pluck('id')->all()) ? 'checked' : ''}}><i></i>{{ $role->display_name }}
                 </label>
             </div>
             @endforeach
