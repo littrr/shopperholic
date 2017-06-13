@@ -44,6 +44,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="pull-right">
+                            {{ $categories->links() }}
+                        </div>
                     </div>
                 @else
                     <div class="row">

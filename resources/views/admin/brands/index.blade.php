@@ -43,6 +43,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="pull-right">
+                        {{ $brands->links() }}
+                    </div>
                 </div>
                 @else
                     <div class="row">

@@ -52,6 +52,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="pull-right">
+                            {{ $roles->links() }}
+                        </div>
                     </div>
                 @else
                     <div class="row">

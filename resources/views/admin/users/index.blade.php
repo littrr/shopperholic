@@ -50,6 +50,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="pull-right">
+                            {{ $users->links() }}
+                        </div>
                     </div>
                 @else
                     <div class="row">
